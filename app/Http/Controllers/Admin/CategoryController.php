@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -14,7 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.categories.index');
+        $categories = Category::all();
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -35,7 +39,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->image->store('category', 'public');
+        $category = new Category();
+        $category->name = $request->name;
+        $category->image = $request->image->hashName();
+        $category->slug = Str::slug($request->name);
+        $category->extract = $request->extract;
+        $category->description = $request->description;
+        $category->save();
+        return redirect()->route('admin.categories.index')->with('message','Category creada') ;
     }
 
     /**
@@ -44,9 +56,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        return view('admin.categories.show');
+        return view('admin.categories.show',compact('category'));
     }
 
     /**
@@ -55,9 +67,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        return view('admin.categories.edit');
+        return view('admin.categories.edit',compact('category'));
     }
 
     /**
@@ -67,9 +79,20 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        if($request->hasFile('image')){
+            unlink(storage_path('app/public/category/'.$category->image));
+            $request->image->store('category', 'public');
+            $category->image = $request->image->hashName();
+        }
+        $category->name = $request->name;
+        
+        $category->slug = Str::slug($request->name);
+        $category->extract = $request->extract;
+        $category->description = $request->description;
+        $category->update();
+        return redirect()->route('admin.categories.index')->with('message','Category updated') ;
     }
 
     /**
@@ -78,8 +101,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        if(file_exists(storage_path('app/public/category/'.$category->image))){
+            unlink(storage_path('app/public/category/'.$category->image));
+
+        }
+        $category->delete();
+        return redirect()->route('admin.categories.index')->with('message','Categoria eliminada');
     }
 }

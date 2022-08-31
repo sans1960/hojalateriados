@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
+    <script src="{{ asset('js/bootstrap.bundle.min.js')}}" defer></script>
 </head>
 <body>
     <div id="app">
@@ -83,6 +84,9 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
+   
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.js') }}"></script>
+    @yield('js')
 </body>
 </html>
