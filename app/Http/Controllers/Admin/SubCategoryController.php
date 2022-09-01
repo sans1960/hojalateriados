@@ -61,6 +61,7 @@ class SubCategoryController extends Controller
     public function show(SubCategory $subcategory)
     {
         return view('admin.subcategories.show',compact('subcategory'));
+        
     }
 
     /**

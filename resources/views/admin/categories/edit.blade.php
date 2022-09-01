@@ -6,7 +6,7 @@
     <div class="col-md-10 mx-auto">
         <div class="card">
             <div class="card-header text-center bg-primary fw-bold text-white">
-                Edit Category
+                Editar Categoria
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.categories.update',$category) }}" method="post" enctype="multipart/form-data" >

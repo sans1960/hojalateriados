@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container d-flex justify-content-around">
-    <h4>Categories</h4>
+    <h4>Categorias</h4>
     <a href="{{ route('admin.categories.create') }}" class="btn btn-success ">
         <i class="bi bi-plus-circle"></i>
     </a>

@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="container d-flex justify-content-around">
-    <h4>Subcategorias</h4>
-    <a href="{{ route('admin.subcategories.create') }}" class="btn btn-success ">
+    <h4>Productos</h4>
+    <a href="{{ route('admin.productos.create') }}" class="btn btn-success ">
         <i class="bi bi-plus-circle"></i>
     </a>
 
@@ -17,35 +18,51 @@
           </div>
      @endif
     </div>
-</div> 
+</div>
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-12">
             <table class="table table-success table-striped">
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Categoria</th>
+                        <th>Referencia</th>
+                        <th>Subcategoria</th>
+                        <th>Tipo</th>
+                        <th>Opcion</th>
+                        <th>Precio</th>
+                        
                         <th colspan="3">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($subcategories as $subcategory)
+                    @foreach ($products as $product)
                         <tr>
-                            <td>{{ $subcategory->name }}</td>
-                            <td>{{ $subcategory->category->name }}</td>
+                            <td>{{ $product->nombre }}</td>
+                            <td>{{ $product->referencia }}</td>
+                            <td>{{ $product->subcategory->name }}</td>
+                            <td>{{ $product->tipo }}</td>
                             <td>
-                                <a class="btn btn-success btn-sm" href="{{ route('admin.subcategories.show',$subcategory) }}">
+                                {{$product->opcion}}
+                                  
+                                </td>
+                            <td>{{ $product->precio }}</td>
+                          
+                           
+                          
+                          
+                            <td>
+                                <a class="btn btn-success btn-sm" href="{{ route('admin.productos.show',$product->slug) }}">
                                     <i class="bi bi-eye"></i>
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-warning btn-sm" href="{{ route('admin.subcategories.edit',$subcategory) }}">
+                                <a class="btn btn-warning btn-sm" href="{{ route('admin.productos.edit',$product) }}">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                             </td>
                             <td>
-                                <form action="{{ route('admin.subcategories.destroy',$subcategory) }}" method="post">
+                                <form action="{{ route('admin.productos.destroy',$product) }}" method="post">
                                   @csrf
                                   @method('delete')
                                   <button class="btn btn-danger btn-sm show_confirm" type="submit"><i class="bi bi-trash"></i></button>
@@ -58,30 +75,4 @@
         </div>
     </div>
 </div> 
-@endsection
-@section('js')
-<script src="{{ asset('js/jquery.js') }}"></script>
-
-<script src="{{ asset('js/sweetalert2.js') }}"></script>
-
-
-<script type="text/javascript">
-     $('.show_confirm').click(function(event) {
-          var form =  $(this).closest("form");
-          var name = $(this).data("name");
-          event.preventDefault();
-          swal({
-              title: `Are you sure you want to delete this record?`,
-              text: "If you delete this, it will be gone forever.",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              form.submit();
-            }
-          });
-      });
-</script>
 @endsection

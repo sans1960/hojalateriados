@@ -6,7 +6,7 @@
     <div class="col-md-10 mx-auto">
         <div class="card">
             <div class="card-header text-center bg-primary fw-bold text-white">
-                Add Subcategory
+                Añadir Subcategoria
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.subcategories.store') }}" method="post" enctype="multipart/form-data" >

@@ -37,10 +37,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.categories.index') }}">{{ __('Categories') }}</a>
+                            <a class="nav-link" href="{{ route('admin.categories.index') }}">{{ __('Categorias') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.subcategories.index') }}">{{ __('Subcategories') }}</a>
+                            <a class="nav-link" href="{{ route('admin.subcategories.index') }}">{{ __('Subcategorias') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.productos.index') }}">{{ __('Productos') }}</a>
                         </li>
                     </ul>
 
