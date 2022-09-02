@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\SubCategory;
-use Illuminate\Support\Str;
-use App\Models\Product;
 
-class ProductController extends Controller
+class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('admin.productos.index',compact('products'));
+        return view('admin.productos.index');
     }
 
     /**
@@ -28,8 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $subcategories = SubCategory::all();
-        return view('admin.productos.create',compact('subcategories'));
+        return view('admin.productos.create');
     }
 
     /**
@@ -40,20 +35,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->image->store('producto', 'public');
-        $product = new Product();
-        $product->nombre = $request->nombre;
-        $product->imagen = $request->image->hashName();
-        $product->slug = Str::slug($request->nombre);
-        $product->referencia = $request->referencia;
-        $product->descripcion = $request->descripcion;
-        $product->comentarios = $request->comentarios;
-        $product->precio = $request->precio;
-        $product->opcion = $request->opcion;
-
-        $product->subcategory_id = $request->subcategory_id;
-        $product->save();
-        return redirect()->route('admin.productos.index')->with('message','Producto creado') ;
+        //
     }
 
     /**
@@ -62,10 +44,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $prod = Product::where('slug',$slug)->get();
-        return $prod;
+        return view('admin.productos.show');
     }
 
     /**
@@ -76,7 +57,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.productos.edit');
     }
 
     /**

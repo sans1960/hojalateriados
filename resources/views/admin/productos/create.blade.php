@@ -21,30 +21,31 @@
                             </div>
                             <div class="col">
                                 <label for="precio" class="form-label">Precio</label>
-                            <input type="number" class="form-control" id="precio" step=".01"  name="precio">
+                            <input type="number" class="form-control" id="precio" required name="precio">
                             </div>
                             
                           </div>
-                          <div class="mb-3">
-                            <label for="opcion">OPCION</label>
-                            <input type="text" class="form-control" id="opcion"   name="opcion">
-                         
-                          </div>
+                      
                           <div class="row mb-3">
+                            <div class="col">
+                              <select class="form-select " required name="subcategory_id" aria-label=".form-select-lg example">
+                                  <option selected>Escoje Categoria</option>
+                             
+                                 
+                                </select>
+                          </div>
                             <div class="col">
                                 <select class="form-select " required name="subcategory_id" aria-label=".form-select-lg example">
                                     <option selected>Escoje Subcategoria</option>
-                                   @foreach ($subcategories as $subcategory)
-                                       <option value="{{ $subcategory->id}}">{{ $subcategory->name}}</option>
-                                   @endforeach
+                               
                                    
                                   </select>
                             </div>
                             <div class="col">
-                                <select class="form-select " required name="tipo" aria-label=".form-select-lg example">
-                                    <option selected>Escoje Tipo</option>
-                                    <option value="producto">PRODUCTO</option>
-                                    <option value="formulario">FORMULARIO</option>
+                                <select class="form-select " required name="estado" aria-label=".form-select-lg example">
+                                    <option selected>Escoje Estado</option>
+                                    <option value="disponible">DISPONIBLE</option>
+                                    <option value="agotado">AGOTADO</option>
                                    
                                    
                                   </select>
@@ -59,16 +60,16 @@
                         </div>
                           <div class="mb-3">
                             <label for="image" class="form-label">Imagen</label>
-                            <input class="form-control" type="file" id="image" name="image">
+                            <input class="form-control" type="file" id="image" name="imagen">
                           </div>
                        
                           <div class="mb-3">
                             <label for="description" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="description" rows="3" name="descripcion"></textarea>
+                            <textarea class="form-control" id="description" rows="3" required name="descripcion"></textarea>
                           </div>
                           <div class="mb-3">
-                            <label for="comentarios" class="form-label">Comentarios</label>
-                            <textarea class="form-control" id="comentarios" rows="3" name="comentarios"></textarea>
+                            <label for="comentarios" class="form-label">Detalles</label>
+                            <textarea class="form-control" id="comentarios" rows="3" required name="detalles"></textarea>
                           </div>
                             
                         <div class="row mb-3">

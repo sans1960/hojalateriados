@@ -13,19 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->string('referencia');
             $table->string('slug');
             $table->text('descripcion');
-            $table->text('comentarios')->nullable();
+            $table->text('detalles');
             $table->string('imagen');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->unsignedBigInteger('subcategory_id');
             $table->foreign('subcategory_id')->references('id')->on('sub_categories')->onDelete('cascade');
-            $table->enum('tipo',['producto','formulario']);
-            $table->decimal('precio',10,2);
-            $table->string('opcion')->nullable();
+            $table->enum('estado',['disponible','agotado']);
+            $table->integer('precio');
             $table->timestamps();
         });
     }
@@ -37,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('productos');
     }
 };
