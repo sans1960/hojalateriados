@@ -27,3 +27,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/admin/categories', CategoryController::class)->middleware('auth')->names('admin.categories');
 Route::resource('/admin/subcategories', SubCategoryController::class)->middleware('auth')->names('admin.subcategories');
 Route::resource('/admin/productos', ProductoController::class)->middleware('auth')->names('admin.productos');
+Route::get('get-subcategories',[ProductoController::class,'getSubcategories'])->middleware('auth')->name('getsubcategories');

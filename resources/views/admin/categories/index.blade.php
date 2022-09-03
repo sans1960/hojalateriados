@@ -58,11 +58,6 @@
 </div>
 @endsection
 @section('js')
-<script src="{{ asset('js/jquery.js') }}"></script>
-
-<script src="{{ asset('js/sweetalert2.js') }}"></script>
-
-
 <script type="text/javascript">
      $('.show_confirm').click(function(event) {
           var form =  $(this).closest("form");

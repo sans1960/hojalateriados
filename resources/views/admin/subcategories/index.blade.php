@@ -60,9 +60,7 @@
 </div> 
 @endsection
 @section('js')
-<script src="{{ asset('js/jquery.js') }}"></script>
 
-<script src="{{ asset('js/sweetalert2.js') }}"></script>
 
 
 <script type="text/javascript">

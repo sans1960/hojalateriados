@@ -28,15 +28,18 @@
                       
                           <div class="row mb-3">
                             <div class="col">
-                              <select class="form-select " required name="subcategory_id" aria-label=".form-select-lg example">
+                              <select class="form-select" id="category" required name="category_id" aria-label=".form-select-lg example">
                                   <option selected>Escoje Categoria</option>
+                                  @foreach ($categories as $category)
+                                      <option value="{{ $category->id}}">{{ $category->name}}</option>
+                                  @endforeach
                              
                                  
                                 </select>
                           </div>
                             <div class="col">
-                                <select class="form-select " required name="subcategory_id" aria-label=".form-select-lg example">
-                                    <option selected>Escoje Subcategoria</option>
+                                <select class="form-select" id="subcategory" required name="subcategory_id" aria-label=".form-select-lg example">
+                                    
                                
                                    
                                   </select>
@@ -88,6 +91,25 @@
     </div>   
 @endsection
 @section('js')
+<script>
+  $(document).ready(function () {
+      $('#category').on('change',function(){
+        var catId = this.value;
+        $('#subcategory').html('');
+        $.ajax({
+          url:'{{ route('getsubcategories') }}?category_id='+catId,
+          type:'get',
+          success:function(res){
+            $('#subcategory').html('<option value="">Escoje Subcategoria</option>');
+            $.each(res,function(key,value){
+                        $('#subcategory').append('<option value="' + value
+                                .id + '">' + value.name + '</option>');
+                    });
+          }
+        });
+      });
+  });
+</script>
 <script type="text/javascript">
 
     $(document).ready(function (e) {
