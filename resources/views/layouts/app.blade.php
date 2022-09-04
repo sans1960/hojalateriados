@@ -90,7 +90,7 @@
             @yield('content')
         </main>
     </div>
-   
+    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.js') }}"></script>
     @yield('js')

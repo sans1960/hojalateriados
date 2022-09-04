@@ -68,7 +68,7 @@
        });
     });
     </script> 
-     <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
+     
      <script>
           CKEDITOR.replace( 'extract' );
           CKEDITOR.replace( 'description' );

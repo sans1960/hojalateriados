@@ -122,4 +122,8 @@
        });
     });
     </script> 
+    <script>
+      CKEDITOR.replace( 'detalles' );
+          CKEDITOR.replace( 'descripcion' );
+    </script>
 @endsection

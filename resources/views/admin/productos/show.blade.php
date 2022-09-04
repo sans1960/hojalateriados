@@ -18,8 +18,8 @@
                     <div class="col">{{ $producto->referencia}}</div>
                     <div class="col">{{ $producto->estado}}</div>
                   </div>
-                  <div>{{ $producto->descripcion}}</div>
-                  <div>{{ $producto->comentarios}}</div>
+                  <div>{!! $producto->descripcion !!}</div>
+                  <div>{!! $producto->comentarios !!}</div>
                   <div>${{ $producto->precio}} + IVA</div>
                 </div>
               </div>

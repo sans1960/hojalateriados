@@ -70,13 +70,13 @@
                           <div class="mb-3">
                             <label for="description" class="form-label">Descripción</label>
                             <textarea class="form-control" id="description" rows="3" required name="descripcion">
-                                {{ $producto->descripcion}}"
+                                {!! $producto->descripcion !!}
                             </textarea>
                           </div>
                           <div class="mb-3">
                             <label for="comentarios" class="form-label">Detalles</label>
                             <textarea class="form-control" id="comentarios" rows="3" required name="detalles">
-                                {{ $producto->detalles}}"
+                              {!! $producto->detalles !!}
                             </textarea>
                           </div>
                             
@@ -127,4 +127,8 @@
        });
     });
     </script> 
+     <script>
+      CKEDITOR.replace( 'detalles' );
+          CKEDITOR.replace( 'descripcion' );
+    </script>
 @endsection
